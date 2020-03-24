@@ -15,7 +15,6 @@ import java.util.List;
 新建
 一个实现了FallbackFactory接口的类DeptClientServiceFallbackFactory
  */
-//@FeignClient(value = "MICROSERVICECLOUD-DEPT")
 @FeignClient(value = "MICROSERVICECLOUD-DEPT",fallbackFactory=DeptClientServiceFallbackFactory.class)
 public interface DeptClientService
 {
