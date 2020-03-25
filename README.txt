@@ -40,7 +40,8 @@ C:\Windows\System32\drivers\etc\hosts
 传统的ACID分别是什么？
     1 A（Atomicity）原子性
     2 C(Consistency) 一致性
-    3 D(Durability)持久性
+    3 I (Isolation )隔离性
+    4 D(Durability)持久性
 CAP
     1 C:Consistency (强一致性)
     2 A:Availability (可用性)
@@ -91,6 +92,46 @@ Hystrix 是一个用于处理分布式系统的延迟喝容错的开源库，在
     在分布式系统中蔓延，乃至雪崩
 
 服务降级
-    整体资源快不够了，忍痛将某些服务先关掉，待度过难关，再开启回来
+    所谓降级，一般是从整体负荷考虑，就是当某个服务熔断之后，服务器将不再调用
+    此时客户端可以自己准备一个本地的fallback回调，返回一个缺省值
+    这样做，虽然水平下降，但是好歹可用，比直接挂掉要强，会给用户一个友好的提示
+
+
+服务熔断
+    一般是某个服务故障或者异常引起，类似行现实世界中的“保险丝”，当某个异常条件触发，直接熔断整个服务，而不是一直等到此服务超时
+
+
+Hystrix Dashboard  可以监控微服务图形化数据（压力状况，调用状况）
+    url  http://eureka7002.com:9001/hystrix
+    监控单个的    http://hystrix-app:port/hystrix.stream
+   监控的说明：
+            实心圆：共有两种含义，它通过颜色的变化代表了实例的健康程度，它的健康程度从绿色>黄色>橙色>红色递减
+            该实心圆除了颜色的变化之外，它的大小也会根据实例的请求流量发生变化。流量越大实心圆就越大，所以通过该实心圆展现就可以在大量的实例中快速发现故障实例喝高压实例
+
+Zuul 包含了对请求的路由和过滤两个最主要的功能
+        其中路由功能负责将外部请求转发到具体的微服务实例上，最实现外部访问统一入口的基础而过滤功能则负责请求的处理过程进行干预，是实现强请求校验，服务集合等功能
+        的基础Zuul和Eureka进行整合，将Zuul注册为Eureka服务治理下的应用，同时从Eureka中获得其他服务的消息，也即以后访问微服务都通过Zuul后获得
+
+        注意：Zuul服务最终还是会注册进Eureka
+        提供=代理+路由+过滤  三大功能
+
+SpringCloud Config 为微服务架构中的微服务提供集中化的外部配置支撑，配置服务器为各个不同微服务应用的所有环境提供了一个中心化外部配置
+
+        1 在github上创建一个仓库
+        2 在本地找个文件夹执行git代码
+          1    git init
+          2    git clone https://github.com/chenshuhong135929/microservicecloud-config.git
+          3    创建对应的配置文件，必须要是utf-8的格式保存，不然会报错的
+          4    cd microservicecloud-config/
+          5     git add
+          6    git commit -m "init file"
+          7    git pull --rebase origin master
+
+
+           127.0.0.1  config-3344.com
+            访问 http://localhost:3344/application-dev.yml
+            访问 http://localhost:3344/application-test.yml
+
+
 
 
