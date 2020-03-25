@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+@Component//不要忘记添加
 public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptClientService> {
 
   @Override

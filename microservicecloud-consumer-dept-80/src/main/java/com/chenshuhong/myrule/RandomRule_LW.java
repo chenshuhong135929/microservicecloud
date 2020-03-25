@@ -16,7 +16,7 @@ public class RandomRule_LW extends AbstractLoadBalancerRule {
     // index = 0 // 当前对外提供服务的服务器地址，
     // total需要重新置为零，但是已经达到过一个5次，我们的index = 1
     // 分析：我们5次，但是微服务只有8001 8002 8003 三台，OK？
-    //
+    //choose就是自定义方法的执行
 
 
     private int total = 0;            // 总共被调用的次数，目前要求每台被调用5次
@@ -32,7 +32,9 @@ public class RandomRule_LW extends AbstractLoadBalancerRule {
             if (Thread.interrupted()) {
                 return null;
             }
+            //当然服务的机台
             List<Server> upList = lb.getReachableServers();
+            //所有服务的机台
             List<Server> allList = lb.getAllServers();
 
             int serverCount = allList.size();
