@@ -132,6 +132,8 @@ SpringCloud Config 为微服务架构中的微服务提供集中化的外部配�
             访问 http://localhost:3344/application-dev.yml
             访问 http://localhost:3344/application-test.yml
 
+application.yml 是用户级的资源配置项
+bootstrap.yml  是系统级的，最优先更加高
 
 
 
