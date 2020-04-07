@@ -125,6 +125,7 @@ SpringCloud Config 为微服务架构中的微服务提供集中化的外部配�
           4    cd microservicecloud-config/
           5     git add.
           6    git commit -m "init file"
+          7    git push -u  origin master
           7    git pull --rebase origin master
 
 
