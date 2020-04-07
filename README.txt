@@ -123,7 +123,7 @@ SpringCloud Config 为微服务架构中的微服务提供集中化的外部配�
           2    git clone https://github.com/chenshuhong135929/microservicecloud-config.git
           3    创建对应的配置文件，必须要是utf-8的格式保存，不然会报错的
           4    cd microservicecloud-config/
-          5     git add
+          5     git add.
           6    git commit -m "init file"
           7    git pull --rebase origin master
 
